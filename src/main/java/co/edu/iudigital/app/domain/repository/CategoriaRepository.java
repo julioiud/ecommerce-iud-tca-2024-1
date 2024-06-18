@@ -12,4 +12,6 @@ public interface CategoriaRepository { // port
     Categoria save(Categoria categoria);
 
     Optional<Categoria> findById(Long id);
+
+    void deleteById(Long id);
 }

@@ -1,14 +1,20 @@
 package co.edu.iudigital.app.domain.service;
 
+import co.edu.iudigital.app.domain.dto.categoria.CategoriaRequestDTO;
+import co.edu.iudigital.app.domain.dto.categoria.CategoriaResponseDTO;
 import co.edu.iudigital.app.domain.model.Categoria;
 
 import java.util.List;
 
 public interface CategoriaService {
 
-    List<Categoria> getCategorias();
+    List<CategoriaResponseDTO> getCategorias();
 
-    Categoria createCategoria(Categoria categoria);
+    CategoriaResponseDTO createCategoria(CategoriaRequestDTO categoriaRequestDTO);
 
-    Categoria getCategoriaById(Long id);
+    CategoriaResponseDTO updateCategoria(Long id, CategoriaRequestDTO categoriaRequestDTO);
+
+    CategoriaResponseDTO getCategoriaById(Long id);
+
+    void deleteCategoriaById(Long id);
 }

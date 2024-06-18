@@ -1,6 +1,7 @@
 package co.edu.iudigital.app.application.rest;
 
-import co.edu.iudigital.app.domain.model.Categoria;
+import co.edu.iudigital.app.domain.dto.categoria.CategoriaRequestDTO;
+import co.edu.iudigital.app.domain.dto.categoria.CategoriaResponseDTO;
 import co.edu.iudigital.app.domain.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// TODO: INCLUIRLO EN EL SWAGGER
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaController {
@@ -18,16 +18,37 @@ public class CategoriaController {
     private CategoriaService categoriaService;
 
     @GetMapping
-    public ResponseEntity<List<Categoria>> index() {// TODO: MIGRAR A DTO
+    public ResponseEntity<List<CategoriaResponseDTO>> index() {
         return ResponseEntity.ok(categoriaService.getCategorias());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<CategoriaResponseDTO> getById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.ok(categoriaService.getCategoriaById(id));
+    }
+
     @PostMapping
-    public ResponseEntity<Categoria> save(// TODO: MIGRAR A DTO
-          @RequestBody Categoria categoria
+    public ResponseEntity<CategoriaResponseDTO> save(// TODO: validation
+          @RequestBody CategoriaRequestDTO request
     ) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(categoriaService.createCategoria(categoria));
+                .body(categoriaService.createCategoria(request));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoriaResponseDTO> update(
+            @PathVariable(value = "id") Long id,
+            @RequestBody CategoriaRequestDTO request
+    ) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(categoriaService.updateCategoria(id, request));
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable(value = "id") Long id) {
+        categoriaService.deleteCategoriaById(id);
+    }
+
 }

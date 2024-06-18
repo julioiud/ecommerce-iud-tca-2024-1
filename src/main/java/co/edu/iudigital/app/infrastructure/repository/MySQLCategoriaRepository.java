@@ -43,4 +43,9 @@ public class MySQLCategoriaRepository implements CategoriaRepository {
         }
         return Optional.empty();
     }
+
+    @Override
+    public void deleteById(Long id) {
+        categoriaJpaRepository.deleteById(id);
+    }
 }

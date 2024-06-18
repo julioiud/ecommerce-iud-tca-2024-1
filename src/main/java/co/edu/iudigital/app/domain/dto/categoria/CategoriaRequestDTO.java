@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoriaRequestDTO implements Serializable {
+public class CategoriaRequestDTO implements Serializable { // TODO: implementar validaciones
 
     static final long serialVersionUID = 1L;
 
