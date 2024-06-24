@@ -2,7 +2,6 @@ package co.edu.iudigital.app.domain.service;
 
 import co.edu.iudigital.app.domain.dto.categoria.CategoriaRequestDTO;
 import co.edu.iudigital.app.domain.dto.categoria.CategoriaResponseDTO;
-import co.edu.iudigital.app.domain.model.Categoria;
 
 import java.util.List;
 
