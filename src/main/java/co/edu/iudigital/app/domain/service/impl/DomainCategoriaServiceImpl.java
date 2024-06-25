@@ -19,12 +19,10 @@ public class DomainCategoriaServiceImpl implements CategoriaService {//port
 
     @Autowired
     private CategoriaRepository categoriaRepository;
-    
+
     @Override
     public List<CategoriaResponseDTO> getCategorias() {
         List<Categoria> categorias = categoriaRepository.findAll();
-        // TODO: IMPLEMENTAR MAPSTRUCT CON CLASES DE MAPEO
-
         /* imperativa
         List<CategoriaResponseDTO> categoriaResponseDTOS = new LinkedList<>();
         for (Categoria categoria : categorias) {
@@ -38,7 +36,6 @@ public class DomainCategoriaServiceImpl implements CategoriaService {//port
             categoriaResponseDTOS.add(categoriaResponseDTO);
         }
         return categoriaResponseDTOS;*/
-
         // funcional
         /*return categorias.stream().map(categoria -> // lambdas de Java 8: programación funcional
             CategoriaResponseDTO.builder()

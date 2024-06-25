@@ -14,11 +14,10 @@ import java.util.Optional;
 @Component
 public class MySQLCategoriaRepository implements CategoriaRepository {
 
-    @Autowired
-    private CategoriaJpaRepository categoriaJpaRepository;
+    private final CategoriaMapper categoriaMapper = CategoriaMapper.INSTANCE;
 
     @Autowired
-    private CategoriaMapper categoriaMapper;
+    private CategoriaJpaRepository categoriaJpaRepository;
 
     @Override
     public List<Categoria> findAll() {

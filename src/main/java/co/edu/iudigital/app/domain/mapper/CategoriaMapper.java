@@ -11,6 +11,7 @@ import java.util.List;
 public interface CategoriaMapper {
 
     CategoriaMapper INSTANCE = Mappers.getMapper(CategoriaMapper.class);
+
     CategoriaResponseDTO toCategoriaResponseDTO(Categoria categoria);
 
     List<CategoriaResponseDTO> toCategoriaResponseDtoList(List<Categoria> categorias);

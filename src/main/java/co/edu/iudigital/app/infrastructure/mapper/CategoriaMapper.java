@@ -2,40 +2,20 @@ package co.edu.iudigital.app.infrastructure.mapper;
 
 import co.edu.iudigital.app.domain.model.Categoria;
 import co.edu.iudigital.app.infrastructure.persistence.jpa.entity.CategoriaEntity;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-// TODO: IMPLEMENTAR CON MAPSTRUCT
-@Component
-public class CategoriaMapper {
+@Mapper
+public interface CategoriaMapper {
 
-    public Categoria toCategoria(CategoriaEntity categoriaEntity) {
-        Categoria categoria = new Categoria();
-        categoria.setId(categoriaEntity.getId());
-        categoria.setNombre(categoriaEntity.getNombre());
-        categoria.setDescripcion(categoriaEntity.getDescripcion());
-        categoria.setCreatedAt(categoriaEntity.getCreatedAt());
-        categoria.setUpdatedAt(categoriaEntity.getUpdatedAt());
-        return categoria;
-    }
+    CategoriaMapper INSTANCE = Mappers.getMapper(CategoriaMapper.class);
 
-    public List<Categoria> toCategorias(List<CategoriaEntity> categoriaEntities) {
-        return categoriaEntities.stream()
-                .map(categoriaEntity -> toCategoria(categoriaEntity))
-                .collect(Collectors.toList());
+    Categoria toCategoria(CategoriaEntity categoriaEntity);
 
-    }
+    List<Categoria> toCategorias(List<CategoriaEntity> categoriaEntities);
 
-    public CategoriaEntity toCategoriEntity(Categoria categoria) {
-        CategoriaEntity categoriaEntity = new CategoriaEntity();
-        categoriaEntity.setId(categoria.getId());
-        categoriaEntity.setNombre(categoria.getNombre());
-        categoriaEntity.setDescripcion(categoria.getDescripcion());
-        categoriaEntity.setCreatedAt(categoria.getCreatedAt());
-        categoriaEntity.setUpdatedAt(categoria.getUpdatedAt());
-        return categoriaEntity;
-    }
+    CategoriaEntity toCategoriEntity(Categoria categoria);
 }
 

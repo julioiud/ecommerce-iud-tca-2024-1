@@ -2,7 +2,6 @@ package co.edu.iudigital.app.domain.service;
 
 import co.edu.iudigital.app.domain.dto.proveedor.ProveedorRequestDTO;
 import co.edu.iudigital.app.domain.dto.proveedor.ProveedorResponseDTO;
-import co.edu.iudigital.app.domain.model.Proveedor;
 
 import java.util.List;
 

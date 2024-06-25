@@ -1,18 +1,22 @@
 package co.edu.iudigital.app.domain.service;
 
-import co.edu.iudigital.app.domain.model.Producto;
+import co.edu.iudigital.app.domain.dto.producto.BuyRequestDTO;
+import co.edu.iudigital.app.domain.dto.producto.ProductoRequestDTO;
+import co.edu.iudigital.app.domain.dto.producto.ProductoResponseDTO;
 
 import java.util.List;
 
 public interface ProductoService {
 
-    List<Producto> getProductos();
+    List<ProductoResponseDTO> getProductos();
 
-    Producto createProducto(Producto producto);
+    ProductoResponseDTO createProducto(ProductoRequestDTO productoRequestDTO);
 
-    Producto getProductoById(Long id);
+    ProductoResponseDTO getProductoById(Long id);
 
     void deleteById(Long id);
 
-    Producto updateProductoById(Long id, Producto producto);
+    ProductoResponseDTO updateProductoById(Long id, ProductoRequestDTO productoRequestDTO);
+
+    ProductoResponseDTO buyProductoById(Long id, BuyRequestDTO buyRequestDTO);
 }

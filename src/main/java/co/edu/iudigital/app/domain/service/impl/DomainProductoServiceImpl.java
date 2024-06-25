@@ -1,5 +1,10 @@
 package co.edu.iudigital.app.domain.service.impl;
 
+import co.edu.iudigital.app.domain.dto.producto.BuyRequestDTO;
+import co.edu.iudigital.app.domain.dto.producto.ProductoRequestDTO;
+import co.edu.iudigital.app.domain.dto.producto.ProductoResponseDTO;
+import co.edu.iudigital.app.domain.mapper.CategoriaMapper;
+import co.edu.iudigital.app.domain.mapper.ProductoMapper;
 import co.edu.iudigital.app.domain.model.Categoria;
 import co.edu.iudigital.app.domain.model.Producto;
 import co.edu.iudigital.app.domain.model.Proveedor;
@@ -15,6 +20,8 @@ import java.util.List;
 @Service
 public class DomainProductoServiceImpl implements ProductoService {// port
 
+    private final ProductoMapper productoMapper = ProductoMapper.INSTANCE;
+
     @Autowired
     private ProductoRepository productoRepository;
 
@@ -25,27 +32,34 @@ public class DomainProductoServiceImpl implements ProductoService {// port
     private ProveedorRepository proveedorRepository;
 
     @Override
-    public List<Producto> getProductos() {
-        return productoRepository.findAll();
+    public List<ProductoResponseDTO> getProductos() {
+        List<Producto> productos = productoRepository.findAll();
+        return productoMapper.toProductoResponseDtoList(productos);
     }
 
     @Override
-    public Producto createProducto(Producto producto) {
+    public ProductoResponseDTO createProducto(ProductoRequestDTO productoRequestDTO) {
         Categoria categoria = categoriaRepository
-                .findById(producto.getCategoria().getId())
+                .findById(productoRequestDTO.getCategoriaId())
                 .orElseThrow(RuntimeException::new);
         Proveedor proveedor = proveedorRepository
-                .findById(producto.getProveedor().getId())
+                .findById(productoRequestDTO.getProveedorId())
                 .orElseThrow(RuntimeException::new);
+
+        Producto producto = productoMapper.toProducto(productoRequestDTO);
         producto.setCategoria(categoria);
         producto.setProveedor(proveedor);
-        return productoRepository.save(producto);
+
+        producto = productoRepository.save(producto);
+
+        return productoMapper.toProductoResponseDto(producto);
     }
 
     @Override
-    public Producto getProductoById(Long id) {
-        return productoRepository.findById(id)
+    public ProductoResponseDTO getProductoById(final Long id) {
+        Producto producto = productoRepository.findById(id)
                 .orElseThrow(RuntimeException::new);
+        return productoMapper.toProductoResponseDto(producto);
     }
 
     @Override
@@ -54,9 +68,23 @@ public class DomainProductoServiceImpl implements ProductoService {// port
     }
 
     @Override
-    public Producto updateProductoById(Long id, Producto producto) {
-        producto = productoRepository.findById(id)
+    public ProductoResponseDTO updateProductoById(Long id, ProductoRequestDTO productoRequestDTO) {
+        Producto producto = productoRepository.findById(id)
                 .orElseThrow(RuntimeException::new);
-        return productoRepository.save(producto);
+        producto.setNombre(productoRequestDTO.getNombre());
+        producto.setPrecioUnitario(productoRequestDTO.getPrecioUnitario());
+        producto.setStock(productoRequestDTO.getStock());
+        producto = productoRepository.save(producto);
+        return productoMapper.toProductoResponseDto(producto);
+    }
+
+    @Override
+    public ProductoResponseDTO buyProductoById(Long id, BuyRequestDTO buyRequestDTO) {
+        Producto producto = productoRepository.findById(id)
+                .orElseThrow(RuntimeException::new);
+        Integer stock = producto.getStock() + buyRequestDTO.getQuantity();
+        producto.setStock(stock);
+        producto = productoRepository.save(producto);
+        return productoMapper.toProductoResponseDto(producto);
     }
 }

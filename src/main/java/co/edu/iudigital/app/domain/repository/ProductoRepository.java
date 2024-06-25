@@ -13,7 +13,5 @@ public interface ProductoRepository { // port
 
     Optional<Producto> findById(Long id);
 
-    Producto update(Long id, Producto producto);
-
     void deleteById(Long id);
 }
