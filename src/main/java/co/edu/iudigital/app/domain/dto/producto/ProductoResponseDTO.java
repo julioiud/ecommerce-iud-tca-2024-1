@@ -2,8 +2,6 @@ package co.edu.iudigital.app.domain.dto.producto;
 
 import co.edu.iudigital.app.domain.dto.categoria.CategoriaResponseDTO;
 import co.edu.iudigital.app.domain.dto.proveedor.ProveedorResponseDTO;
-import co.edu.iudigital.app.domain.model.Categoria;
-import co.edu.iudigital.app.domain.model.Proveedor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

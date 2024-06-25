@@ -1,7 +1,5 @@
 package co.edu.iudigital.app.application.rest;
 
-import co.edu.iudigital.app.domain.dto.categoria.CategoriaRequestDTO;
-import co.edu.iudigital.app.domain.dto.categoria.CategoriaResponseDTO;
 import co.edu.iudigital.app.domain.dto.proveedor.ProveedorRequestDTO;
 import co.edu.iudigital.app.domain.dto.proveedor.ProveedorResponseDTO;
 import co.edu.iudigital.app.domain.service.ProveedorService;

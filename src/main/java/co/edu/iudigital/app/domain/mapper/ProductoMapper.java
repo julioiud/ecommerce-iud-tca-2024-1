@@ -4,8 +4,6 @@ import co.edu.iudigital.app.domain.dto.producto.ProductoRequestDTO;
 import co.edu.iudigital.app.domain.dto.producto.ProductoResponseDTO;
 import co.edu.iudigital.app.domain.model.Producto;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;

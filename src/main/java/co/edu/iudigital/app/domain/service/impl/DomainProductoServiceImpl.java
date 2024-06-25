@@ -3,7 +3,6 @@ package co.edu.iudigital.app.domain.service.impl;
 import co.edu.iudigital.app.domain.dto.producto.BuyRequestDTO;
 import co.edu.iudigital.app.domain.dto.producto.ProductoRequestDTO;
 import co.edu.iudigital.app.domain.dto.producto.ProductoResponseDTO;
-import co.edu.iudigital.app.domain.mapper.CategoriaMapper;
 import co.edu.iudigital.app.domain.mapper.ProductoMapper;
 import co.edu.iudigital.app.domain.model.Categoria;
 import co.edu.iudigital.app.domain.model.Producto;
