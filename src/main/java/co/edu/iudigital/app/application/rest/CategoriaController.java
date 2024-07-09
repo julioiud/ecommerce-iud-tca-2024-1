@@ -3,6 +3,7 @@ package co.edu.iudigital.app.application.rest;
 import co.edu.iudigital.app.domain.dto.categoria.CategoriaRequestDTO;
 import co.edu.iudigital.app.domain.dto.categoria.CategoriaResponseDTO;
 import co.edu.iudigital.app.domain.service.CategoriaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,8 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoriaResponseDTO> save(// TODO: validation
-          @RequestBody CategoriaRequestDTO request
+    public ResponseEntity<CategoriaResponseDTO> save(
+          @Valid @RequestBody CategoriaRequestDTO request
     ) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)

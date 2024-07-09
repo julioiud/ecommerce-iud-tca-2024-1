@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @Service
 public class DomainProveedorServiceImpl implements ProveedorService {// port
 
+    // TODO: IMPLEMENTAR EXCEPCIONES PERSONALIZADAS
     @Autowired
     private ProveedorRepository proveedorRepository;
 

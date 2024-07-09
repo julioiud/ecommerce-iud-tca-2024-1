@@ -8,9 +8,11 @@ spring:
     name: API Iudigital
 # conexión a base de datos
   datasource:
-    url: jdbc:mysql://localhost:3306/iudigital
-    username: root
-    password:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
+    show-sql: true
+    defer-datasource-initialization: true

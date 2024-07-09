@@ -6,6 +6,7 @@ import co.edu.iudigital.app.domain.mapper.CategoriaMapper;
 import co.edu.iudigital.app.domain.model.Categoria;
 import co.edu.iudigital.app.domain.repository.CategoriaRepository;
 import co.edu.iudigital.app.domain.service.CategoriaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class DomainCategoriaServiceImpl implements CategoriaService {//port
 
+    // TODO: IMPLEMENTAR EXCEPCIONES PERSONALIZADAS
     private final CategoriaMapper categoriaMapper = CategoriaMapper.INSTANCE;
 
     @Autowired
@@ -22,6 +25,7 @@ public class DomainCategoriaServiceImpl implements CategoriaService {//port
 
     @Override
     public List<CategoriaResponseDTO> getCategorias() {
+        log.trace("getCategorias()  from DomainCategoriaServiceImpl");
         List<Categoria> categorias = categoriaRepository.findAll();
         /* imperativa
         List<CategoriaResponseDTO> categoriaResponseDTOS = new LinkedList<>();

@@ -3,6 +3,7 @@ package co.edu.iudigital.app.application.rest;
 import co.edu.iudigital.app.domain.dto.producto.BuyRequestDTO;
 import co.edu.iudigital.app.domain.dto.producto.ProductoRequestDTO;
 import co.edu.iudigital.app.domain.dto.producto.ProductoResponseDTO;
+import co.edu.iudigital.app.domain.exceptions.RestException;
 import co.edu.iudigital.app.domain.service.ProductoService;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,14 +26,14 @@ public class ProductoController {
     @Operation(summary = "Obtiene todos los productos",
             description= "Obtiene todos los productos")
     @GetMapping
-    public ResponseEntity<List<ProductoResponseDTO>> index() {
+    public ResponseEntity<List<ProductoResponseDTO>> index() throws RestException {
         return ResponseEntity.ok(productoService.getProductos());
     }
 
     @Operation(summary = "Obtiene un producto por su ID",
             description= "Obtiene un producto por su ID")
     @GetMapping("/{id}")
-    public ResponseEntity<ProductoResponseDTO> getById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<ProductoResponseDTO> getById(@PathVariable(value = "id") Long id) throws RestException {
         return ResponseEntity.ok(productoService.getProductoById(id));
     }
 
@@ -41,7 +42,7 @@ public class ProductoController {
     @PostMapping
     public ResponseEntity<ProductoResponseDTO> save(// TODO: validation
                                                      @RequestBody ProductoRequestDTO request
-    ) {
+    ) throws RestException {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(productoService.createProducto(request));
@@ -53,7 +54,7 @@ public class ProductoController {
     public ResponseEntity<ProductoResponseDTO> update(
             @PathVariable(value = "id") Long id,
             @RequestBody ProductoRequestDTO request
-    ) {
+    ) throws RestException {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(productoService.updateProductoById(id, request));
@@ -62,7 +63,7 @@ public class ProductoController {
     @Operation(summary = "Borra un Producto por su ID",
             description= "Borra un Producto por su ID")
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable(value = "id") Long id) {
+    public void delete(@PathVariable(value = "id") Long id) throws RestException {
         productoService.deleteById(id);
     }
 
@@ -72,7 +73,7 @@ public class ProductoController {
     public ResponseEntity<ProductoResponseDTO> buy(
             @PathVariable(value = "id") Long id,
             @RequestBody BuyRequestDTO request
-    ) {
+    ) throws RestException {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(productoService.buyProductoById(id, request));

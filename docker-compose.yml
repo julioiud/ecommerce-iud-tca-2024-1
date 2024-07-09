@@ -1,4 +1,4 @@
-version : '3'
+version : '3.6'
 services :
   app-iudigital :
     build :
@@ -6,9 +6,10 @@ services :
     ports :
       - "8084:8084"
     environment :
-      DATABASE_URL : jdbc:mysql://localhost:3306/iudigital
+      DATABASE_URL : jdbc:mysql://basedatos:3306/iudigital?createDatabaseIfNotExist=true
       DATABASE_USERNAME : iudigital
       DATABASE_PASSWORD : Cambiar123@
+    restart: always
     networks :
       - iudigital
     depends_on :

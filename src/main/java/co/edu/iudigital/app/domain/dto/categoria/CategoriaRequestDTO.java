@@ -1,6 +1,7 @@
 package co.edu.iudigital.app.domain.dto.categoria;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -15,6 +16,7 @@ public class CategoriaRequestDTO implements Serializable { // TODO: implementar 
 
     static final long serialVersionUID = 1L;
 
+    @NotNull(message = "Nombre Requerido")
     @JsonProperty("nombre")
     String nombre;
 

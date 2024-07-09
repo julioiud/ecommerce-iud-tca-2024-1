@@ -6,4 +6,4 @@ COPY ./target/app-0.0.1-SNAPSHOT.jar /app/app.jar
 
 EXPOSE 8084
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["java","-Dspring.profiles.active=default","-jar", "app.jar"]
